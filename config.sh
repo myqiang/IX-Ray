@@ -1,14 +1,17 @@
 #!/bin/sh
 
+DIR_CONFIG="/etc/v2ray"
+DIR_TMP="$(mktemp -d)"
+
 # Get V2/X2 binary and decompress binary
 mkdir /tmp/xray
-curl --retry 10 --retry-max-time 60 -L -H "Cache-Control: no-cache" -fsSL https://github.com/XTLS/Xray-core/releases/download/v1.5.5/Xray-linux-64.zip -o /tmp/xray/xray.zip
-busybox unzip /tmp/xray/xray.zip -d /tmp/xray
-install -m 755 /tmp/xray/xray /usr/local/bin/xray
-install -m 755 /tmp/xray/geosite.dat /usr/local/bin/geosite.dat
-install -m 755 /tmp/xray/geoip.dat /usr/local/bin/geoip.dat
+curl --retry 10 --retry-max-time 60 -L -H "Cache-Control: no-cache" -fsSL https://github.com/XTLS/Xray-core/releases/download/v1.5.5/Xray-linux-64.zip -o ${DIR_TMP}/xray.zip
+busybox unzip ${DIR_TMP}/xray.zip -d ${DIR_TMP}/xray
+install -m 755 ${DIR_TMP}/xray /usr/local/bin/xray
+install -m 755 ${DIR_TMP}/geosite.dat /usr/local/bin/geosite.dat
+install -m 755 ${DIR_TMP}/geoip.dat /usr/local/bin/geoip.dat
 xray -version
-rm -rf /tmp/xray
+rm -rf ${DIR_TMP}
 
 # V2/X2 new configuration
 install -d /usr/local/etc/xray
