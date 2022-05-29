@@ -22,7 +22,7 @@ cat << EOF > /usr/local/etc/xray/config.json
     },
     "inbounds": [
         {
-            "port": ${PORT},
+            "port": "${PORT}",
             "protocol": "vless",
             "settings": {
                 "clients": [
@@ -50,7 +50,7 @@ cat << EOF > /usr/local/etc/xray/config.json
             }
         },
         {
-            "port": ${PORT},
+            "port": "${PORT}",
             "protocol": "trojan",
             "settings": {
                 "clients": [
