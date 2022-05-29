@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ixray
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ixray
+  template:
+    metadata:
+      labels:
+        app: ixray
+    spec:
+      containers:
+      - image: okteto.dev/ixray:latest
+        name: ray
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "$PORT"
+        - name: ID
+          value: "$ID"
+        - name: ID-vless
+          value: "$ID-vless"
+        - name: ID-trojan
+          value: "ID-trojan"
