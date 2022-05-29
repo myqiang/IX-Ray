@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - image: okteto.dev/ixray:latest
-        name: ray
+        name: ixray
         ports:
         - containerPort: 8080
         env:
